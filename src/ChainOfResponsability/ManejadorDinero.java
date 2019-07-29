@@ -16,24 +16,41 @@ public class ManejadorDinero implements Manejador{
     protected int cantidad;
     protected double denominacion;
 
-    @Override
-    public Manejador manejador(int n, double denominacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public ManejadorDinero(int n, double denominacion) {
+        this.cantidad = n;
+        this.denominacion = denominacion;
     }
 
+    
     @Override
-    public void setNext(Manejador manjejador) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setNext(Manejador manejador) {
+        this.next = manejador;
     }
 
     @Override
     public boolean retirar(double monto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(monto>0)
+            return true;
+        else 
+            return false;
+        
     }
 
     @Override
     public boolean depositar(int n, double denominacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false; 
     }
 
+    public double getDenominacion() {
+        return denominacion;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+    public Manejador getNext() {
+        return next;
+    }
+    
 }
