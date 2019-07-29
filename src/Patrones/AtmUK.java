@@ -10,7 +10,7 @@ import java.util.Currency;
 import java.util.Locale;
 
 public class AtmUK {
-    protected final Currency currency=Locale.UK;
+    protected final Currency currency=Currency.getInstance(Locale.UK);
     protected double dinero = 0;
     protected ArrayList <Manejador> manejadores; // Cada manejador puede entregar dinero de una sola denominación
 
