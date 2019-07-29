@@ -30,16 +30,28 @@ public class ManejadorDinero implements Manejador{
 
     @Override
     public boolean retirar(double monto) {
-        if(monto>0)
+        if(monto>0 /*&& cantidad>0*/){ // ¿Validar que la cantidad de la denominacion sea mayor a cero?
+            int vuelto= (int) (monto%denominacion); //Devuelve el residuo del dinero retirado
+            int nbilletes=(int) (monto/denominacion); //Devuelve la cantidad de billetes de esta denominacion
+            cantidad=(int) (cantidad-nbilletes); //Disminuimos la cantidad de esta denominación
+            if(nbilletes>0 && cantidad>0) System.out.println(nbilletes+" x "+denominacion+" $");  //Validamos 
+            if(vuelto>0) next.retirar(vuelto); //Enviamos la cantidad faltante al sgte manejador
             return true;
-        else 
-            return false;
+        }
+        System.out.println("Se acabo la cantidad");
+        return false;
         
     }
 
     @Override
     public boolean depositar(int n, double denominacion) {
-        return false; 
+        if(n<0 && denominacion<0 && (denominacion!=20 || denominacion!=10 || denominacion!=0.50 || denominacion!=0.25 || denominacion!=0.05)){
+            System.out.println("Valores incorrectos!");
+            return false;
+        }         
+        cantidad+=n;
+        System.out.println("-Agregado "+n+" a la denominacion "+denominacion);
+        return  true;
     }
 
     public double getDenominacion() {
