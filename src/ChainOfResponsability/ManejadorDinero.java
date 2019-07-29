@@ -9,6 +9,7 @@ package ChainOfResponsability;
  *
  * @author CltControl
  */
+
 public class ManejadorDinero implements Manejador{
     
     private Manejador next;
@@ -34,5 +35,5 @@ public class ManejadorDinero implements Manejador{
     public boolean depositar(int n, double denominacion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

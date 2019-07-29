@@ -10,8 +10,9 @@ package ChainOfResponsability;
  * @author CltControl
  */
 public interface Manejador {
-    Manejador manejador(int n, double denominacion);
-    void setNext(Manejador manjejador);
+
+    Manejador manejador (int n, double denominacion);
+    void setNext(Manejador m);
     boolean retirar(double monto);
     boolean depositar(int n, double denominacion);
 }
