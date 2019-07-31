@@ -15,7 +15,7 @@ import java.util.Currency;
 public class AtmEC {
     private static AtmEC instance;
     private Currency moneda;
-    private double dinero;
+    private double dinero = 0;
     private Manejador manejador;
     
     private AtmEC(){
@@ -32,42 +32,57 @@ public class AtmEC {
     }
     
     public void sacarDinero(double dinero) {
-        //this.dinero -= dinero;
+        this.dinero -= dinero;
+        manejador.retirar(dinero);
     }
 
     public void ingresarDinero(double dinero, int denominacion) {
-        //this.dinero += dinero;
+        this.dinero += dinero;
+        manejador.depositar(denominacion, dinero);
     }
 
     public void addManejador(Manejador m){
-        if(manejador == null)
+        dinero += m.getDinero();
+        
+        if(manejador == null){
             manejador = m;
-        else {
-            manejador.setNext(m);
+        }else{
+            Manejador copia = manejador.getNext();
+            while(copia.getNext() != null)
+                copia = copia.getNext();
+            copia.setNext(m);
         }
     }
+    
     public Manejador removeManejador(double d){
         //iterar con esos getter y setters
-        /*
-        Manejador copia;
-        copia = manejador;
-        if(manejador.getDenominacion() == d && manejador.getNext() != null){
-            manejador = manejador.getNext();
-            return copia;
-        }else if(manejador.getDenominacion() == d && manejador.getNext() == null){
+        Manejador copia = manejador;
+        
+        if(manejador.getDenominacion() == d && manejador.getNext() == null){
+            dinero -= manejador.getDinero();
             manejador = null;
+            return copia;
         }
         
-        copia = manejador.getNext();
-        while(copia.getDenominacion() == d && copia.getNext() != null){
-            
-            if(manejador.getDenominacion() == d){
-                
+        Manejador copiaPrev = copia;
+        copia = copia.getNext();
+        while(copia.getNext()!=null){
+            if(copia.getDenominacion() == d){
+                copiaPrev.setNext(copia.getNext());
+                copia.setNext(null);
+                dinero -= copia.getDinero();
+                return copia;
             }
+            copiaPrev = copiaPrev.getNext();
+            copia = copia.getNext();
         }
-        return copia
-        */
-        return manejador;
+        if(copia.getDenominacion() == d){
+            copiaPrev.setNext(null);
+            copia.setNext(null);
+            dinero -= copia.getDinero();
+            return copia;
+        }
+        return null;
     }
 
     //Dentro de las transacciones se debe llamar al ATM para hacer el retiro o deposito de la cuenta correspondiente
