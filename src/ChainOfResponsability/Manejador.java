@@ -20,4 +20,5 @@ public interface Manejador {
     Manejador getNext();
     double getDenominacion();
     double getDinero();
+    int getCantidad();
 }

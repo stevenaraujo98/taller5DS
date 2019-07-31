@@ -75,4 +75,10 @@ public class ManejadorDinero implements Manejador {
     public Manejador getNext() {
         return next;
     }
+
+    @Override
+    public int getCantidad() {
+        return cantidad;
+    }
+    
 }
