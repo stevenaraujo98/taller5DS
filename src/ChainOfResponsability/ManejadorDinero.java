@@ -60,5 +60,19 @@ public class ManejadorDinero implements Manejador {
         return false;
     }
 
+    //=====================================================
+    @Override
+    public double getDinero(){
+        return cantidad * denominacion;
+    }
     
+    @Override
+    public double getDenominacion(){
+        return denominacion;
+    }
+
+    @Override
+    public Manejador getNext() {
+        return next;
+    }
 }

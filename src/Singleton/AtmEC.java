@@ -22,13 +22,21 @@ public class AtmEC {
         //manejador = new Manejador();
     }
     
-    public AtmEC getInstance(){
+    public static AtmEC getInstance(){
         if(instance == null){
             instance = new AtmEC();
             System.out.println("Creado con exito.");
         }else
             System.out.println("Ya existe el objeto.");
         return instance;
+    }
+    
+    public double getDinero() {
+        return dinero;
+    }
+
+    public void setDinero(double dinero) {
+        this.dinero = dinero;
     }
     
     public void sacarDinero(double dinero) {
@@ -47,7 +55,7 @@ public class AtmEC {
         if(manejador == null){
             manejador = m;
         }else{
-            Manejador copia = manejador.getNext();
+            Manejador copia = manejador;
             while(copia.getNext() != null)
                 copia = copia.getNext();
             copia.setNext(m);
@@ -55,32 +63,31 @@ public class AtmEC {
     }
     
     public Manejador removeManejador(double d){
-        //iterar con esos getter y setters
+        if(manejador == null){
+            return null;
+        }
+        
         Manejador copia = manejador;
-        
-        if(manejador.getDenominacion() == d && manejador.getNext() == null){
+        if(manejador.getDenominacion() == d){
             dinero -= manejador.getDinero();
-            manejador = null;
-            return copia;
-        }
-        
-        Manejador copiaPrev = copia;
-        copia = copia.getNext();
-        while(copia.getNext()!=null){
-            if(copia.getDenominacion() == d){
-                copiaPrev.setNext(copia.getNext());
+            if(manejador.getNext() == null)
+                manejador = null;
+            else{
+                manejador = manejador.getNext();
                 copia.setNext(null);
-                dinero -= copia.getDinero();
-                return copia;
             }
-            copiaPrev = copiaPrev.getNext();
-            copia = copia.getNext();
-        }
-        if(copia.getDenominacion() == d){
-            copiaPrev.setNext(null);
-            copia.setNext(null);
-            dinero -= copia.getDinero();
             return copia;
+        }
+        Manejador copiaRetorno;
+        while(copia.getNext() != null){
+            if(copia.getNext().getDenominacion() == d){
+                copiaRetorno = copia.getNext();
+                copia.setNext(copiaRetorno.getNext());
+                copiaRetorno.setNext(null);
+                dinero -= copiaRetorno.getDinero();
+                return copiaRetorno;
+            }
+            copia = copia.getNext();
         }
         return null;
     }

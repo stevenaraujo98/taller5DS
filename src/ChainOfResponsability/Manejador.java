@@ -16,5 +16,8 @@ public interface Manejador {
     boolean retirar(double monto);
     boolean depositar(int n, double denominacion);
     
-
+    //=================================================
+    Manejador getNext();
+    double getDenominacion();
+    double getDinero();
 }
