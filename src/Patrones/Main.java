@@ -6,6 +6,7 @@
 package Patrones;
 
 import ChainOfResponsability.ManejadorDinero;
+import ChainOfResponsability.ManejadorDinero;
 import java.util.Scanner;
 
 public class Main
@@ -25,22 +26,20 @@ public class Main
         b_50.setNext(b_25);
         b_25.setNext(b_05);
         
-        /*while(true){
-            Scanner r = new Scanner(System.in);
+        Scanner r = new Scanner(System.in);
+        double n,n1,d;
+        String b,d1,n2;
+        do{
             System.out.print("Ingrese valor: ");
-            double n= r.nextDouble();
-            System.out.println("Tu retiro: ");
-            b20.retirar(n);
-        }*/
+            b = r.nextLine();
+        }while(b20.retirar(Double.parseDouble(b))!=false);
         
-        /*while(true){
-            Scanner r = new Scanner(System.in);            
+        do{           
             System.out.print("Ingrese denominacion a depositar: ");
-            double d= r.nextDouble();
+            d1= r.nextLine();
             System.out.print("Ingrese cantidad de billete a depositar: ");
-            int n= r.nextInt();
-            b20.depositar(n, d);
-        }*/
+            n1= r.nextInt();
+        }while(b20.depositar((int) n1, Double.parseDouble(d1))!=false);
         
         // Crear 10 cuentas nuevas en dólares locale.US con un saldo inicial entre 100.00 y 1000.00 USD cada una.
         
