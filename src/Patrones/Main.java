@@ -5,6 +5,7 @@
  */
 package Patrones;
 
+import Adapter.Cuenta;
 import Adapter.CuentaAdapter;
 import ChainOfResponsability.ManejadorDinero;
 import Singleton.AtmEC;
@@ -43,10 +44,25 @@ public class Main
             n1= r.nextInt();
         }while(b20.depositar((int) n1, Double.parseDouble(d1))!=false);
         // Crear 10 cuentas nuevas en dólares locale.US con un saldo inicial entre 100.00 y 1000.00 USD cada una.
-        
+        Cuenta[] lc=new Cuenta[10]; 
+        for(int i=0;i<10;i++){
+            double random = Math.random() * 1001 + 100;
+            Cuenta c=new CuentaAdapter(i,random);
+            lc[i]=c;
+        }
         // Menú principal para seleccionar una de las 10 cuentas solo con el id
+        Scanner sc=new Scanner(System.in);
+        Cuenta c=null;
+        System.out.println("Ingrese el id de la cuenta ");
+        int id=sc.nextInt();
+        if(id<0 || id>9){
+            System.out.println("Ese id no existe");
+        }else{
+            c=lc[id];
+            // Mostrar el menú para realizar transacciones en el cajero automático
+            AtmEC.transaction(c);
+        }
         
-        // Mostrar el menú para realizar transacciones en el cajero automático
         
         
         /*

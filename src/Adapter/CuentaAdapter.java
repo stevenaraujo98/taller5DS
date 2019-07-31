@@ -48,7 +48,7 @@ public class CuentaAdapter implements Cuenta{
     @Override
     public boolean Depositar(double n, double denominacion) {
         String ver=cuenta.deposit(n*denominacion);
-        System.out.println(ver);
+      //  System.out.println(ver);
         int pos=ver.indexOf(" ");
         String parcial=ver.substring(pos);
         String sfinal= this.moneda.getCurrencyCode()+ parcial;
