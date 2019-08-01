@@ -35,7 +35,7 @@ public class ManejadorDinero implements Manejador {
             if((int)comprobarDenomi == 0){
                 this.cantidad = this.cantidad-(int)cantidadR;
                 System.out.println("Se ha retirado: "+(int)cantidadR+" con denominacion: "+this.denominacion+" su cantidad es: "+this.cantidad);
-                next.retirar(monto-(int)cantidadR * this.denominacion);
+                if(next!=null)next.retirar(monto-(int)cantidadR * this.denominacion);
             }
             else
                 next.retirar(monto);

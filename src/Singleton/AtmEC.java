@@ -108,9 +108,11 @@ public class AtmEC {
         choice = in.nextInt();
         switch(choice){
             case 1:
-                float amount = 0; 
-                System.out.println("Please enter amount to withdraw: "); 
-                amount = in.nextFloat();
+                double amount = 0; 
+                System.out.print("Please enter amount to withdraw: "); 
+                //String n = in.next();
+                amount = Double.parseDouble(in.next());
+                in.nextLine();
                 if(amount > cuenta.balance() || amount == 0){
                     System.out.println("You have insufficient funds\n\n"); 
                     anotherTransaction(cuenta); // ask if they want another transaction
