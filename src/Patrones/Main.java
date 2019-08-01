@@ -46,7 +46,7 @@ public class Main
         // Crear 10 cuentas nuevas en dólares locale.US con un saldo inicial entre 100.00 y 1000.00 USD cada una.
         Cuenta[] lc=new Cuenta[10]; 
         for(int i=0;i<10;i++){
-            double random = Math.random() * 1001 + 100;
+            double random =(int) (Math.random() * 1001 + 100);
             Cuenta c=new CuentaAdapter(i,random);
             lc[i]=c;
         }
