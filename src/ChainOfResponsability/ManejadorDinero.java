@@ -31,11 +31,30 @@ public class ManejadorDinero implements Manejador {
     public boolean retirar(double monto) {
         if(monto>0){
             double cantidadR= monto/this.denominacion;
-            double comprobarDenomi = monto % this.denominacion;
-            if((int)comprobarDenomi == 0){
-                this.cantidad = this.cantidad-(int)cantidadR;
-                System.out.println("Se ha retirado: "+(int)cantidadR+" con denominacion: "+this.denominacion+" su cantidad es: "+this.cantidad);
-                next.retirar(monto-(int)cantidadR * this.denominacion);
+            if(this.denominacion>0){
+                int nCantidad = this.cantidad-(int)cantidadR;
+                if(nCantidad>0){
+                    this.cantidad = nCantidad;
+                    System.out.println("Se ha retirado: "+(int)cantidadR+" con denominacion: "+this.denominacion+" su cantidad es: "+this.cantidad);
+                    double m = monto-(int)cantidadR * this.denominacion;
+                    if(m== 0.0)
+                        return false;
+                    else
+                        next.retirar(monto-(int)cantidadR * this.denominacion);
+                }
+                else if(nCantidad<0){
+                    int cont = 0;
+                    for(int i = nCantidad*(-1);this.cantidad>0;i--){
+                        this.cantidad -= 1;
+                        cont ++;
+                    }
+                    System.out.println("Se ha retirado: "+cont+" con denominacion: "+this.denominacion+" su cantidad es: "+this.cantidad);
+                    double m = monto-(cont * this.denominacion);
+                    if(m == 0.0)
+                        return false;
+                    else
+                        next.retirar(monto-(cont * this.denominacion));
+                }
             }
             else
                 next.retirar(monto);
