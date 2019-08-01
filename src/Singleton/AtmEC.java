@@ -121,7 +121,7 @@ public class AtmEC {
                         // cuenta.retirar(amount);
                         // AtmUK.sacarDinero(amount);
                         cuenta.Retirar(amount);
-                        instance.manejador.retirar(amount);
+                        instance.sacarDinero(amount);
                         System.out.println("You have withdrawn "+amount+" and your new balance is "+cuenta.balance());
                         // Todo: Mostrar resumen de transacción o error
                         // "You have withdrawn "+amount+" and your new balance is "+balance;
@@ -159,12 +159,16 @@ public class AtmEC {
                     if(instance.manejador == null){
                         System.out.println("No hay billetes!");
                     }else{
+                        double total = 0;
                         Manejador copia = instance.manejador;
                         while(copia.getNext() != null){
-                            System.out.println("Un manjador es con denominacion: "+copia.getDenominacion()+" y cantidad: "+copia.getCantidad());
+                            System.out.println("Un manjador es con denominación: "+copia.getDenominacion()+" y cantidad: "+copia.getCantidad());
+                            total += (copia.getDenominacion()*copia.getCantidad());
                             copia = copia.getNext();
                         }
-                        System.out.println("Un manjador es con denominacion: "+copia.getDenominacion()+" y cantidad: "+copia.getCantidad());
+                        System.out.println("Un manjador es con denominación: "+copia.getDenominacion()+" y cantidad: "+copia.getCantidad());
+                        total += (copia.getDenominacion()*copia.getCantidad());
+                        System.out.println("El total de todos los manejadores es: "+total);
                     }
                     anotherTransaction(cuenta); 
             break;

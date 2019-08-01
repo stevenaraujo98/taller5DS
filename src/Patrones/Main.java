@@ -75,8 +75,6 @@ public class Main
             AtmEC.transaction(c);
         }
         
-        
-        
         /*
         ManejadorDinero b20 = new ManejadorDinero(100, 20);
         ManejadorDinero b10 = new ManejadorDinero(100, 10);
