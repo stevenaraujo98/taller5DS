@@ -44,6 +44,8 @@ public class Main
             n1= r.nextInt();
         }while(b20.depositar((int) n1, Double.parseDouble(d1))!=false);*/
         // Crear 10 cuentas nuevas en dólares locale.US con un saldo inicial entre 100.00 y 1000.00 USD cada una.
+        
+        
         Cuenta[] lc=new Cuenta[10]; 
         for(int i=0;i<10;i++){
             double random =(int) (Math.random() * 1001 + 100);
@@ -81,6 +83,7 @@ public class Main
         ManejadorDinero b_50 = new ManejadorDinero(10, 0.50);
         ManejadorDinero b_25 = new ManejadorDinero(10, 0.25);
         ManejadorDinero b_05 = new ManejadorDinero(1000, 0.05); 
+        ManejadorDinero b_01 = new ManejadorDinero(10000, 0.01);
         AtmEC atm = AtmEC.getInstance();
         System.out.println("Ingresando manejadores");
         atm.addManejador(b20);
@@ -88,7 +91,8 @@ public class Main
         atm.addManejador(b_50);
         atm.addManejador(b_25);
         atm.addManejador(b_05);
-        CuentaAdapter cuenta = new CuentaAdapter(20,1000);
+        atm.addManejador(b_01);
+        CuentaAdapter cuenta = new CuentaAdapter(1,5000);
         atm.transaction(cuenta);
         */
     }    

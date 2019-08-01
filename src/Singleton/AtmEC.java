@@ -48,7 +48,7 @@ public class AtmEC {
     }
 
     public boolean ingresarDinero(int n, double denominacion) {
-        this.dinero += dinero;
+        this.dinero += n*denominacion;
         return manejador.depositar(n, denominacion);
     }
 
@@ -127,27 +127,37 @@ public class AtmEC {
                         System.out.println("You have withdrawn "+amount+" and your new balance is "+cuenta.balance());
                         // Todo: Mostrar resumen de transacción o error
                         // "You have withdrawn "+amount+" and your new balance is "+balance;
-                    }else{
+                    }else
                         // Todo: Mostrar resumen de transacción o error
                         System.out.println("Error al retirar");
-                    }
+                    
                     anotherTransaction(cuenta); 
                 }
             break; 
             case 2:
                     // option number 2 is depositing 
                     int deposit; 
-                    System.out.println("Please enter amount you would wish to deposit: "); 
+                    double denominacion;
+                    System.out.println("Please enter amount you would wish to deposit! "); 
+                    System.out.println("Please enter amount of money or currency: "); 
                     deposit = in.nextInt();
                     
-                    System.out.println("Please currency denomination : "); 
-                    double denominacion = in.nextDouble();
-                    // Todo: actualizar tanto la cuenta como el atm
-                    cuenta.Depositar(deposit, denominacion);
-                    instance.ingresarDinero(deposit, denominacion);
-                    // Todo: Mostrar resumen de transacción o error
-                    // "You have withdrawn "+amount+" and your new balance is "+balance;
-                    System.out.println("You to deposit "+deposit+" and your new balance is "+cuenta.balance());
+                    System.out.println("Please enter currency denomination : "); 
+                    denominacion = Double.parseDouble(in.next());
+                    in.nextLine();
+                    if(deposit > 0 && denominacion > 0.0){
+                        // Todo: actualizar tanto la cuenta como el atm
+                        instance.ingresarDinero(deposit, denominacion); 
+                        cuenta.Depositar(deposit, denominacion);
+                        // "You have withdrawn "+amount+" and your new balance is "+balance;
+                        System.out.println("You to deposit "+deposit+" and your new balance is "+cuenta.balance());
+                    }
+                    else
+                        // Todo: Mostrar resumen de transacción o error
+                        System.out.println("Error al retirar");
+                    
+                    
+                    
                     anotherTransaction(cuenta);
             break; 
             case 3:
@@ -165,12 +175,10 @@ public class AtmEC {
                         Manejador copia = instance.manejador;
                         while(copia.getNext() != null){
                             System.out.println("Un manjador es con denominación: "+copia.getDenominacion()+" y cantidad: "+copia.getCantidad());
-                            total += (copia.getDenominacion()*copia.getCantidad());
                             copia = copia.getNext();
                         }
                         System.out.println("Un manjador es con denominación: "+copia.getDenominacion()+" y cantidad: "+copia.getCantidad());
-                        total += (copia.getDenominacion()*copia.getCantidad());
-                        System.out.println("El total de todos los manejadores es: "+total);
+                        System.out.println("El total de todos los manejadores es: "+instance.dinero);
                     }
                     anotherTransaction(cuenta); 
             break;
