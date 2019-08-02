@@ -39,7 +39,7 @@ public class ManejadorDinero implements Manejador {
                 double m = monto-(int)cantidadR * this.denominacion;
                 if( m == 0.0)
                     return true;
-                else
+                else if(next!=null)
                     return next.retirar(m);
             }
             else if(nCantidad<0){

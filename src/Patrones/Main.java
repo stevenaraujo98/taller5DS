@@ -55,7 +55,7 @@ public class Main
         // Menú principal para seleccionar una de las 10 cuentas solo con el id
         Scanner sc=new Scanner(System.in);
         Cuenta c=null;
-        System.out.println("Ingrese el id de la cuenta ");
+        System.out.println("Ingrese el id de la cuenta");
         int id=sc.nextInt();
         if(id<0 || id>9){
             System.out.println("Ese id no existe");
